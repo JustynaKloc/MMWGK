@@ -1,11 +1,12 @@
 import pygame
 from pygame.locals import *
-
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+
 def myPaint():
     glPushMatrix()
+    #dodanie światła 
     glEnable(GL_LIGHTING)
     glEnable(GL_LIGHT2)
     glEnable(GL_DEPTH_TEST)
@@ -38,6 +39,7 @@ edges = (
     (5,1),
     (5,4),
     (5,7))
+
 surfaces = (
     (0,1,2,3),
     (3,2,7,6),
@@ -46,19 +48,22 @@ surfaces = (
     (1,5,7,2),
     (4,0,3,6)
     )
-colors_serf = (( 1.0, 0.0, 0.0, 1.0),
-( 1.0, 1.0, 0.0, 1.0),
-( 1.0, 1.0, 1.0, 1.0),
-( 0.0, 1.0, 0.0, 1.0),
-( 0.0, 1.0, 1.0, 1.0),
-( 1.0, 0.0, 0.0, 1.0))
+#kolory 
+colors_serf = (( 1.0, 0.0, 0.0, 1.0), #czerwony 
+( 1.0, 1.0, 0.0, 1.0), #żółty
+( 1.0, 1.0, 1.0, 1.0), #biały
+( 0.0, 1.0, 0.0, 1.0), #zielony
+( 0.0, 1.0, 1.0, 1.0), #niebieski
+( 1.0, 0.0, 0.0, 1.0)) #czerowny 
 
+#stworzenie sześcianu
 def Cube():
     glBegin(GL_QUADS)
     
     for surface in surfaces:
         x = 0
         for vertex in surface:
+            #nałożenie kolorów
             glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,colors_serf[x])
             x+=1
             glVertex3fv(verticies[vertex])
